@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ | Orange Shop</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">ForsakenShop</div>
+    <div class="user">
+        Xin chào, <span id="username"></span>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
+</header>
+
+<!-- BANNER -->
+<section class="banner">
+    <h1>Chào mừng đến với Orange Shop</h1>
+    <p>Mua sắm nhanh chóng – Giá cả hợp lý</p>
+</section>
+
+<!-- PRODUCT LIST -->
+<section class="products">
+    <div class="product">
+        <img src="Twotime.webp" alt="">
+        <h3>Twotime</h3>
+        
+        
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/200" alt="">
+        <h3>Giày thể thao</h3>
+        <p>450.000đ</p>
+        <button>Thêm vào giỏ</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/200" alt="">
+        <h3>Balo</h3>
+        <p>300.000đ</p>
+        <button>Thêm vào giỏ</button>
+    </div>
+</section>
+
+<script>
+    // chặn chưa đăng nhập
+    if (localStorage.getItem("isLogin") !== "true") {
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("username").innerText =
+        localStorage.getItem("currentUser");
+
+    function logout() {
+        localStorage.removeItem("isLogin");
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>

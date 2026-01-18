@@ -1,0 +1,79 @@
+/* ===== HEADER ===== */
+.header {
+    background: #ff6a00;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.user button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== BANNER ===== */
+.banner {
+    text-align: center;
+    padding: 40px;
+    background: #fff3e6;
+}
+
+.banner h1 {
+    color: #ff6a00;
+}
+
+/* ===== PRODUCTS (Đã chuyển sang Grid) ===== */
+.products {
+    display: grid;
+    /* Tự động điều chỉnh số cột: mỗi cột tối thiểu 220px, tối đa chiếm hết khoảng trống */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 25px; /* Khoảng cách giữa các sản phẩm */
+    padding: 30px;
+    max-width: 1200px; /* Giới hạn độ rộng danh sách để trông đẹp hơn */
+    margin: 0 auto;    /* Căn giữa danh sách sản phẩm */
+}
+
+.product {
+    background: white;
+    /* width: 220px;  <-- Bỏ dòng này vì Grid sẽ tự quản lý chiều rộng */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Giúp các nút bấm luôn thẳng hàng ở dưới cùng */
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #ff6a00;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.product button:hover {
+    background: #e65c00;
+}
