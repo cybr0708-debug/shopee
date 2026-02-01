@@ -1,79 +1,212 @@
-/* ===== HEADER ===== */
+/* --- 1. Thiết lập chung & Biến màu --- */
+:root {
+    --primary: #ff7a00;
+    --dark: #222222;
+    --bg: #f5f5f5;
+    --white: #ffffff;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* --- 2. Header --- */
 .header {
-    background: #ff6a00;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
+    background: var(--dark);
+    color: var(--white);
+    padding: 0 5%;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
-}
-
-.user button {
-    margin-left: 10px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
+    letter-spacing: 1px;
+    color: var(--primary);
     cursor: pointer;
 }
 
-/* ===== BANNER ===== */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-actions button,
+.btn-logout {
+    padding: 8px 16px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.user-actions button:hover,
+.btn-logout:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.cart-icon {
+    cursor: pointer;
+}
+
+/* --- 3. Banner & Search --- */
 .banner {
     text-align: center;
-    padding: 40px;
-    background: #fff3e6;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #ff7a00 0%, #ff9500 100%);
+    color: var(--white);
 }
 
-.banner h1 {
-    color: #ff6a00;
-}
+.banner h1 { font-size: 2.5rem; margin-bottom: 10px; }
 
-/* ===== PRODUCTS (Đã chuyển sang Grid) ===== */
-.products {
+.search-box {
+    padding: 20px;
+    margin-top: -35px;
     display: grid;
-    /* Tự động điều chỉnh số cột: mỗi cột tối thiểu 220px, tối đa chiếm hết khoảng trống */
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 25px; /* Khoảng cách giữa các sản phẩm */
-    padding: 30px;
-    max-width: 1200px; /* Giới hạn độ rộng danh sách để trông đẹp hơn */
-    margin: 0 auto;    /* Căn giữa danh sách sản phẩm */
+    place-items: center;
+}
+
+.search-box input {
+    width: 50%;
+    min-width: 300px;
+    padding: 15px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    outline: none;
+}
+
+/* --- 4. Danh sách sản phẩm --- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px 5%;
 }
 
 .product {
-    background: white;
-    /* width: 220px;  <-- Bỏ dòng này vì Grid sẽ tự quản lý chiều rộng */
-    padding: 15px;
+    background: var(--white);
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Giúp các nút bấm luôn thẳng hàng ở dưới cùng */
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-rows: 180px auto 1fr auto;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
 .product img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product h3 {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.product p {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .product button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    background: #ff6a00;
-    color: white;
+    padding: 12px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.2s;
 }
 
 .product button:hover {
-    background: #e65c00;
+    background: #e66e00;
+}
+
+/* --- 5. Giỏ hàng --- */
+.cart-section {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 350px;
+    height: 100%;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 25px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    z-index: 2000;
+}
+
+.cart-section.active {
+    right: 0;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 20px 0;
+    text-align: right;
+}
+
+/* --- 6. Footer --- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #eee;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .search-box input { width: 90%; }
+    .header { padding: 0 20px; }
+    .cart-section { width: 100%; }
+    .products-grid { grid-template-columns: 1fr; padding: 20px; }
 }

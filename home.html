@@ -2,65 +2,92 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ | Orange Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ | ForsakenShop</title>
     <link rel="stylesheet" href="style1.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
-    <div class="logo">ForsakenShop</div>
-    <div class="user">
-        Xin chào, <span id="username"></span>
-        <button onclick="logout()">Đăng xuất</button>
-    </div>
+    <nav class="navbar">
+        <div class="logo"><strong>ForsakenShop</strong></div>
+        <div class="user-actions">
+            <span class="welcome-text">Xin chào, <b id="username">Khách</b></span>
+            <button type="button" class="btn-logout" onclick="logout()">Đăng xuất</button>
+            <div class="cart-icon" onclick="toggleCart()">
+                <span class="icon">🛒</span> Giỏ hàng (<span id="cartCount">0</span>)
+            </div>
+        </div>
+    </nav>
 </header>
 
-<!-- BANNER -->
-<section class="banner">
-    <h1>Chào mừng đến với Orange Shop</h1>
-    <p>Mua sắm nhanh chóng – Giá cả hợp lý</p>
-</section>
+<main>
+    <section class="banner">
+        <div class="container">
+            <h1>Chào mừng đến với ForsakenShop</h1>
+            <p>Mua sắm nhanh chóng – Giá cả hợp lý</p>
+        </div>
+    </section>
 
-<!-- PRODUCT LIST -->
-<section class="products">
-    <div class="product">
-        <img src="Twotime.webp" alt="">
-        <h3>Twotime</h3>
+    <section class="toolbar">
+        <div class="search-box">
+            <label for="search">.....</label>
+            <input type="search" id="search" placeholder="Bạn tìm gì hôm nay..." oninput="renderProducts()">
+        </div>
+        <div class="filter-group">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">Tất cả danh mục</option>
+                <option value="electronics">Điện tử</option>
+                <option value="fashion">Thời trang</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="products-container">
+        <h2 class="section-title">Sản phẩm nổi bật</h2>
+        <div class="products-grid" id="products">
+            <aside class="loading">Đang tải sản phẩm...</aside>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="cart-section" id="cart">
+        <h2><span class="icon">📦</span> Giỏ hàng của bạn</h2>
+        <div id="cartItems" class="cart-list"></div>
         
-        
+        <div class="cart-summary">
+            <p>Tổng cộng: <strong id="totalPrice">0</strong> <ins>đ</ins></p>
+        </div>
+
+        <form class="checkout-form">
+            <fieldset>
+                <legend>Thông tin giao hàng</legend>
+                <div class="form-group">
+                    <input type="text" placeholder="Tên người nhận" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Địa chỉ giao hàng" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-checkout">Xác nhận đặt hàng</button>
+            </fieldset>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>Phát triển bởi: <strong>dominhnichthu2</strong></p>
+        <nav class="footer-links">
+            <a href="#">Chính sách</a> | <a href="#">Liên hệ</a>
+        </nav>
+        <p>© 2026 ForsakenShop - All rights reserved</p>
     </div>
-
-    <div class="product">
-        <img src="https://via.placeholder.com/200" alt="">
-        <h3>Giày thể thao</h3>
-        <p>450.000đ</p>
-        <button>Thêm vào giỏ</button>
-    </div>
-
-    <div class="product">
-        <img src="https://via.placeholder.com/200" alt="">
-        <h3>Balo</h3>
-        <p>300.000đ</p>
-        <button>Thêm vào giỏ</button>
-    </div>
-</section>
-
-<script>
-    // chặn chưa đăng nhập
-    if (localStorage.getItem("isLogin") !== "true") {
-        window.location.href = "login.html";
-    }
-
-    document.getElementById("username").innerText =
-        localStorage.getItem("currentUser");
-
-    function logout() {
-        localStorage.removeItem("isLogin");
-        localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
-    }
-</script>
+</footer>
 
 </body>
 </html>
