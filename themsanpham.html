@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm sản phẩm | ForsakenShop</title>
+    <link rel="stylesheet" href="style1.css">
+    <script defer src="add-product.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo"><strong>ForsakenShop</strong></div>
+            <div class="user-actions">
+                <span class="welcome-text">Xin chào, <b id="username">Khách</b></span>
+                <button type="button" class="btn-logout" onclick="logout()">Đăng xuất</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2 style="text-align:center; margin:20px 0;">Thêm sản phẩm mới</h2>
+        <form id="addProductForm" style="width:300px; margin:0 auto; display:grid; gap:10px;">
+            <input type="text" id="newName" placeholder="Tên sản phẩm" required>
+            <input type="number" id="newPrice" placeholder="Giá" required>
+            <input type="number" id="newStock" placeholder="Số lượng" required>
+            <input type="text" id="newImg" placeholder="Link ảnh">
+            <button type="submit">Thêm</button>
+        </form>
+        <p style="text-align:center; margin-top:10px;">
+            <a href="home.html">&larr; Quay về trang chính</a>
+        </p>
+    </main>
+</body>
+</html>

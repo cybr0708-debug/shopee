@@ -12,6 +12,13 @@
 <header class="header">
     <nav class="navbar">
         <div class="logo"><strong>ForsakenShop</strong></div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="lienhe.html">Liên hệ</a></li>
+        </ul>
+
         <div class="user-actions">
             <span class="welcome-text">Xin chào, <b id="username">Khách</b></span>
             <button type="button" class="btn-logout" onclick="logout()">Đăng xuất</button>
@@ -22,7 +29,10 @@
     </nav>
 </header>
 
+
 <main>
+    <!-- Form thêm sản phẩm sẽ được JS thêm tự động -->
+    
     <section class="banner">
         <div class="container">
             <h1>Chào mừng đến với ForsakenShop</h1>
@@ -32,7 +42,7 @@
 
     <section class="toolbar">
         <div class="search-box">
-            <label for="search">.....</label>
+            <label for="search">.</label>
             <input type="search" id="search" placeholder="Bạn tìm gì hôm nay..." oninput="renderProducts()">
         </div>
         <div class="filter-group">
@@ -53,31 +63,38 @@
 
     <hr>
 
-    <section class="cart-section" id="cart">
-        <h2><span class="icon">📦</span> Giỏ hàng của bạn</h2>
-        <div id="cartItems" class="cart-list"></div>
-        
-        <div class="cart-summary">
-            <p>Tổng cộng: <strong id="totalPrice">0</strong> <ins>đ</ins></p>
-        </div>
+<section class="cart-section" id="cart">
+    <!-- Nút đóng -->
+    <button class="cart-close" onclick="toggleCart()">×</button>
 
-        <form class="checkout-form">
-            <fieldset>
-                <legend>Thông tin giao hàng</legend>
-                <div class="form-group">
-                    <input type="text" placeholder="Tên người nhận" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Số điện thoại" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Địa chỉ giao hàng" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn-checkout">Xác nhận đặt hàng</button>
-            </fieldset>
-        </form>
-    </section>
+    <h2><span class="icon">📦</span> Giỏ hàng của bạn</h2>
+    <div id="cartItems" class="cart-list"></div>
+    
+    <div class="cart-summary">
+        <p>Tổng cộng: <strong id="totalPrice">0</strong> <ins>đ</ins></p>
+    </div>
+
+    <form class="checkout-form">
+        <fieldset>
+            <legend>Thông tin giao hàng</legend>
+            <div class="form-group">
+                <input type="text" placeholder="Tên người nhận" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" placeholder="Số điện thoại" required>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Địa chỉ giao hàng" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn-checkout">Xác nhận đặt hàng</button>
+        </fieldset>
+    </form>
+</section>
+
 </main>
+<button id="goAddProduct" class="btn-add-product">
+    + Thêm sản phẩm
+</button>
 
 <footer class="footer">
     <div class="footer-content">
@@ -91,3 +108,34 @@
 
 </body>
 </html>
+<body>
+  <!-- Nút chat tròn góc phải -->
+  <button id="chatToggle" 
+          style="position:fixed; bottom:20px; right:20px; z-index:9999; 
+                 width:60px; height:60px; border-radius:50%; 
+                 background:#ff7a00; color:white; border:none; 
+                 cursor:pointer; font-size:28px;">
+    💬
+  </button>
+
+  <!-- Iframe Chatbase -->
+  <iframe id="chatIframe"
+          src="https://www.chatbase.co/chatbot-iframe/PijUonTGEN132p5wH9o1j"
+          style="position:fixed; bottom:90px; right:20px; width:350px; height:500px; border:0; display:none; z-index:9998; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+  </iframe>
+
+  <script>
+    let flagChatbox = false;
+
+    document.getElementById('chatToggle').addEventListener('click', function() {
+      const chatbox = document.getElementById('chatIframe');
+      if(!flagChatbox){
+        chatbox.style.display = 'block';
+        flagChatbox = true;
+      } else {
+        chatbox.style.display = 'none';
+        flagChatbox = false;
+      }
+    });
+  </script>
+</body>
