@@ -1,9 +1,9 @@
-
-let productsData = [
-    { id: 1, name: "Tai nghe", price: 250000, stock: 5, img: "https://i.postimg.cc/k4JZDsks/shopping.webp" },
-    { id: 2, name: "Áo thun", price: 150000, stock: 10, img: "https://i.postimg.cc/xdRprHcH/shopping.webp" },
-    { id: 3, name: "Balo", price: 300000, stock: 3, img: "https://i.postimg.cc/fWF2hMTg/shopping.webp" }
+let productsData = JSON.parse(localStorage.getItem("productsData")) || [
+    { id: 1, name: "Tai nghe", price: 250000, stock: 5, img: "https://i.postimg.cc/k4JZDsks/shopping.webp" ,category: "electronics" },
+    { id: 2, name: "Áo thun", price: 150000, stock: 10, img: "https://i.postimg.cc/xdRprHcH/shopping.webp" ,category: "fashion"},
+    { id: 3, name: "Balo", price: 300000, stock: 3, img: "https://i.postimg.cc/fWF2hMTg/shopping.webp" , category: "fashion"}
 ];
+localStorage.setItem("productsData", JSON.stringify(productsData));
 let cart = [];
 function isLoggedIn() {
     return localStorage.getItem("isLogin") && localStorage.getItem("user");
