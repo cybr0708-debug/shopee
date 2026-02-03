@@ -55,11 +55,13 @@ function register() {
 
     // save to localStorage
     localStorage.setItem("users", JSON.stringify(users));
-
-    // success message
     success.innerText = "Đăng ký thành công! Chuyển sang đăng nhập...";
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("confirmPassword").value = "";
+
 
     setTimeout(() => {
         window.location.href = "index.html";
-    }, 1200);
-}
+    }, 1200);}

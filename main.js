@@ -11,9 +11,19 @@ function isLoggedIn() {
 function renderProducts() {
     const container = document.getElementById("products");
     const searchValue = document.getElementById("search").value.toLowerCase();
+    const categoryValue = document.getElementById("categoryFilter").value;
+
     container.innerHTML = "";
+
     productsData
-        .filter(p => p.name.toLowerCase().includes(searchValue))
+        .filter(p => {
+            // Debug để kiểm tra giá trị thực tế
+            console.log("Product category:", p.category, "Filter:", categoryValue);
+
+            const matchSearch = p.name.toLowerCase().includes(searchValue);
+            const matchCategory = (categoryValue === "all" || p.category === categoryValue);
+            return matchSearch && matchCategory;
+        })
         .forEach(p => {
             const div = document.createElement("div");
             div.classList.add("product");
@@ -22,29 +32,16 @@ function renderProducts() {
                 <h3>${p.name}</h3>
                 <p>${p.price.toLocaleString()} đ</p>
                 <p class="stock">Còn lại: ${p.stock}</p>
-
-                <input 
-                    type="number" 
-                    min="1" 
-                    max="${p.stock}" 
-                    value="1" 
-                    id="qty-${p.id}" 
-                    style="width:50px; margin-right:5px;"
-                >
-
+                <input type="number" min="1" max="${p.stock}" value="1" id="qty-${p.id}">
                 <button onclick="addToCart(${p.id})" ${p.stock === 0 ? "disabled" : ""}>
                     ${p.stock === 0 ? "Hết hàng" : "Thêm vào giỏ"}
                 </button>
-
-                <!-- NÚT CHI TIẾT (THÊM) -->
-                <button class="btn-detail" onclick="showDetail(${p.id})">
-                    Chi tiết
-                </button>
+                <button class="btn-detail" onclick="showDetail(${p.id})">Chi tiết</button>
             `;
-
             container.appendChild(div);
         });
 }
+
 function addToCart(id) {
     if (!isLoggedIn()) {
         alert("Vui lòng đăng nhập để mua hàng!");

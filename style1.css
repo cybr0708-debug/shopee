@@ -234,15 +234,14 @@ body {
 .cart-section.active {
     right: 0;
 }
-
 .cart-item {
-    padding: 10px 0;
+    padding: 20px 0;              /* tăng khoảng cách trên/dưới mỗi item */
+    margin-bottom: 15px;          /* thêm khoảng cách giữa các item */
     border-bottom: 1px solid #eee;
 
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;                /* dùng flex để căn đều */
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
 }
 
 .cart-item button {
@@ -375,22 +374,6 @@ body {
         margin: 20px;
     }
 }
-/* --- Nút Thêm sản phẩm chuyển trang --- */
-.btn-add-product {
-    display: inline-block;
-    margin: 20px 5%;          /* cách đều 2 bên */
-    padding: 12px 20px;        /* to đủ bấm dễ */
-    border-radius: 8px;        /* bo góc */
-    border: none;
-    background-color: var(--primary); /* màu chính */
-    color: var(--white);
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-}
-
 .btn-add-product:hover {
     background-color: #e66e00; /* đổi màu khi hover */
 }

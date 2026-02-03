@@ -15,11 +15,17 @@ function login() {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        localStorage.setItem("isLogin", "true");
-        localStorage.setItem("user", username);
-        alert("Đăng nhập thành công!");
-        window.location.href = "home.html"; // chuyển sang trang home
-    } else {
-        error.innerText = "Sai tài khoản hoặc mật khẩu!";
-    }
+    localStorage.setItem("isLogin", "true");
+    localStorage.setItem("user", username);
+    alert("Đăng nhập thành công!");
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    setTimeout(() => {
+        window.location.href = "home.html";
+    }, 500);
 }
+}
+window.onload = function() {
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+};

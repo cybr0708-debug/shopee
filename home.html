@@ -17,8 +17,8 @@
             <li><a href="sanpham.html">Sản phẩm</a></li>
             <li><a href="gioithieu.html">Giới thiệu</a></li>
             <li><a href="lienhe.html">Liên hệ</a></li>
+            <li><a href="themsanpham.html">Thêm sản phẩm</a></li>
         </ul>
-
         <div class="user-actions">
             <span class="welcome-text">Xin chào, <b id="username">Khách</b></span>
             <button type="button" class="btn-logout" onclick="logout()">Đăng xuất</button>
@@ -42,11 +42,10 @@
 
     <section class="toolbar">
         <div class="search-box">
-            <label for="search">.</label>
             <input type="search" id="search" placeholder="Bạn tìm gì hôm nay..." oninput="renderProducts()">
         </div>
         <div class="filter-group">
-            <select id="categoryFilter" onchange="filterProducts()">
+            <select id="categoryFilter" onchange="renderProducts()">
                 <option value="all">Tất cả danh mục</option>
                 <option value="electronics">Điện tử</option>
                 <option value="fashion">Thời trang</option>
@@ -92,10 +91,6 @@
 </section>
 
 </main>
-<button id="goAddProduct" class="btn-add-product">
-    + Thêm sản phẩm
-</button>
-
 <footer class="footer">
     <div class="footer-content">
         <p>Phát triển bởi: <strong>dominhnichthu2</strong></p>
